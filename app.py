@@ -28,9 +28,13 @@ def index():
 @app.route("/play/<int:row>/<int:col>")
 def play(row, col):
     # Update board
-    session["board"][row][col] = "X"
+    session["board"][row][col] = session["turn"]
     # Update turn
-    session["turn"] = "O"
+    if session["turn"] == "X":
+        session["turn"] = "O"
+    else:
+        session["turn"] = "X"
+
     # Redirect to index game board
     return redirect(url_for("index"))
 
