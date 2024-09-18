@@ -32,7 +32,7 @@
 							{{ game[i][j] }}
 						{% else %}
 <!--							show a link where player can select that space-->
-							<a href="#">Play {{ turn}} here</a>
+							<a href="{{ url_for('play', row=i, col=j) }}">Play {{ turn }} here</a>
 						{% endif %}
                     </td>
                 {% endfor %}

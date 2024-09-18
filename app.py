@@ -24,9 +24,16 @@ def index():
     return render_template("game.html", game=session["board"], turn=session["turn"])
 
 
+# Use route to play when link is clicked
 @app.route("/play/<int:row>/<int:col>")
 def play(row, col):
+    # Update board
+    session["board"][row][col] = "X"
+    # Update turn
+    session["turn"] = "O"
+    # Redirect to index game board
     return redirect(url_for("index"))
+
 
 if __name__ == "__main__":
     app.run(debug=True)
