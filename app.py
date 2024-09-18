@@ -25,12 +25,13 @@ def index():
 
 
 # Check for winner
-def check_winner(board, turn):
+def check_winner(row, col, board, turn):
     is_winner = False
     current = turn
     # x_picks = []
     # y_picks = []
     #
+
     # if current == "X":
     #     x_picks.append([row, col])
     # else:
@@ -39,16 +40,12 @@ def check_winner(board, turn):
     # print(f"x_picks: {x_picks}")
     # print(f"y_picks: {y_picks}")
 
-    # for i in board:
-    #     print(f"This is i: {i}")
-    #     if i.count(current) == 3:
-    #         is_winner = True
-    #         return is_winner
-    #     elif i[0] == current:
-    #         print(f"i[0] loop: {i[0]}")
-    #
-    #     for j in i:
-    #         print(f"This is j: {j}")
+    for i in board:
+        print(f"This is i: {i}")
+        if i.count(current) == 3:
+            is_winner = True
+            return is_winner
+        if i[col]
 
 
 
