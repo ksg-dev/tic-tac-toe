@@ -15,6 +15,9 @@
 			font-size: 30px;
 			text-align: center;
             }
+		td > a {
+			font-size: 18px;
+		}
     </style>
 </head>
 <body>
@@ -23,7 +26,14 @@
             <tr>
                 {% for j in range(3) %}
                     <td>
-						{{ game[i][j] }}
+<!--						if there is something at this spot in the game-->
+						{% if game[i][j] %}
+<!--							then print what is there-->
+							{{ game[i][j] }}
+						{% else %}
+<!--							show a link where player can select that space-->
+							<a href="#">Play {{ turn}} here</a>
+						{% endif %}
                     </td>
                 {% endfor %}
             </tr>
