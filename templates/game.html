@@ -21,6 +21,9 @@
     </style>
 </head>
 <body>
+	{% if winner %}
+		<h1>{{ turn }} WINS!</h1>
+	{% endif %}
     <table>
         {% for i in range(3) %}
             <tr>
