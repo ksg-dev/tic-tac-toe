@@ -28,7 +28,7 @@ def index():
 def check_winner(row, col, board, turn):
     is_winner = False
     current = turn
-    # x_picks = []
+    check = []
     # y_picks = []
     #
 
@@ -45,7 +45,13 @@ def check_winner(row, col, board, turn):
         if i.count(current) == 3:
             is_winner = True
             return is_winner
-        if i[col]
+        if i[col] == current:
+            check.append(i[col])
+
+        if check.count(current) == 3:
+            is_winner = True
+            return is_winner
+        # print(f"i[col] match turn: {i[col]} -- {i[col]==current}")
 
 
 
@@ -63,7 +69,7 @@ def play(row, col):
             still_playing = False
 
         # Check for winner
-        if check_winner(session["board"], session["turn"]):
+        if check_winner(row, col, session["board"], session["turn"]):
             print(f"WINNER IS: {session['turn']}")
             still_playing = False
 
