@@ -29,29 +29,38 @@ def check_winner(row, col, board, turn):
     is_winner = False
     current = turn
     check = []
-    # y_picks = []
-    #
-
-    # if current == "X":
-    #     x_picks.append([row, col])
-    # else:
-    #     y_picks.append([row, col])
-    #
-    # print(f"x_picks: {x_picks}")
-    # print(f"y_picks: {y_picks}")
+    middle = board[1][1]
+    check2 = []
 
     for i in board:
-        print(f"This is i: {i}")
+        # print(f"This is i: {i}")
         if i.count(current) == 3:
             is_winner = True
             return is_winner
         if i[col] == current:
             check.append(i[col])
 
+        # print(f"check: {check}")
         if check.count(current) == 3:
             is_winner = True
             return is_winner
-        # print(f"i[col] match turn: {i[col]} -- {i[col]==current}")
+
+    if middle and middle == current:
+        check2.append(middle)
+        if board[0][0] == current:
+            check2.append(current)
+            if board[2][2] == current:
+                check2.append(current)
+        elif board[0][2] == current:
+            check2.append(current)
+            if board[2][0] == current:
+                check2.append(current)
+
+
+    # print(f"check2: {check2}")
+    if check2.count(current) == 3:
+        is_winner = True
+        return is_winner
 
 
 
