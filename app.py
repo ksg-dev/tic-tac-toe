@@ -11,7 +11,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 @app.route("/")
-def index(winner=None):
+def index():
 
     # First, if no board in session, create a new board
     if "board" not in session:
@@ -20,8 +20,9 @@ def index(winner=None):
         # Also store whose turn it is in session, X starts
         session["turn"] = "X"
 
+
     # Inside template, need to have access to board, and whose turn it is
-    return render_template("game.html", game=session["board"], turn=session["turn"], winner=winner)
+    return render_template("game.html", game=session["board"], turn=session["turn"])
 
 
 # Check for winner
@@ -70,7 +71,6 @@ def play(row, col):
     moves_remaining = 9
     still_playing = True
     while still_playing:
-        winner = None
         # Update board
         session["board"][row][col] = session["turn"]
 
@@ -82,10 +82,10 @@ def play(row, col):
         if check_winner(row, col, session["board"], session["turn"]):
             print(f"WINNER IS: {session['turn']}")
             still_playing = False
-            winner = session["turn"]
+
 
             # Redirect to index game board
-            return redirect(url_for("index", winner=winner))
+            return redirect(url_for("index"))
 
         else:
             # Update turn
@@ -94,7 +94,7 @@ def play(row, col):
             else:
                 session["turn"] = "X"
             moves_remaining -= 1
-            print(session["board"])
+            # print(session["board"])
 
         # Redirect to index game board
         return redirect(url_for("index"))
